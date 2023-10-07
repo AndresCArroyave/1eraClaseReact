@@ -1,10 +1,18 @@
 <?php
+    include 'conexion.php';
+
     //Recibir datos
     $correo = $_POST['correo'];
     $password =$_REQUEST['password'];
     $claveHash = password_hash($password, PASSWORD_BCRYPT);
-    $clave = password_hash($password, PASSWORD_DEFAULT);
+    
+    $sql = "INSERT INTO usuarios VALUES (null, '$correo', '$claveHash')";
 
-    echo "Hash 1: {$claveHash} <br> Hash 2: {$clave}";
+    $conectar -> query($sql);
+
+    header('Location: ../index.html');
+
+
+    
 
 ?>
