@@ -6,11 +6,23 @@
     $password =$_REQUEST['password'];
     $claveHash = password_hash($password, PASSWORD_BCRYPT);
     
-    $sql = "INSERT INTO usuarios VALUES (null, '$correo', '$claveHash')";
+    // $sql = "INSERT INTO usuarios VALUES (null, '$correo', '$claveHash')";
 
-    $conectar -> query($sql);
+    // $enviar = $conectar -> prepare ("INSERT INTO usuarios VALUES (null, ?, ?)");
+    
 
-    header('Location: ../index.html');
+    // $enviar -> execute(array($correo, $claveHash));
+    // $enviar -> bindParam(1,$correo);
+    // $enviar -> bindParam(2,$claveHash);
+    // $enviar -> execute();
+    
+    $enviar = $conectar -> prepare ("INSERT INTO usuarios VALUES (null, :email, :contra)");
+    $enviar -> bindParam('email',$correo);
+    $enviar -> bindParam('contra',$claveHash);
+    $enviar -> execute();
+
+
+    header('Location: ../index.html');//Enrutar
 
 
     
