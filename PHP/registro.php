@@ -22,7 +22,7 @@
     $enviar -> execute();
 
 
-    header('Location: ../index.html');//Enrutar
+    header('Location: ../formulario_registro.html');//Enrutar
 
 
     
